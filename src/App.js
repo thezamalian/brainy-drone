@@ -5,6 +5,7 @@ import Home from './Pages/Home/Home/Home';
 import Footer from './Pages/Shared/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
 import Login from './Pages/Shared/Login/Login';
+import NotFound from './Pages/Shared/NotFound/NotFound';
 import Purchase from './Pages/Shared/Purchase/Purchase';
 import SignUp from './Pages/Shared/SignUp/SignUp';
 
@@ -40,6 +41,10 @@ function App() {
 					</Route>
 					<Route path="/products/:id">
 						<Purchase />
+					</Route>
+
+					<Route path="*">
+						<NotFound />
 					</Route>
 				</Switch>
 				<Footer />
