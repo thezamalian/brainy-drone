@@ -18,8 +18,7 @@ const Banner = () => {
                     //     t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                }
-                }
+                }}
             >
                 <Typography variant="h2" style={{ marginTop: '60vh' }}>
                     World's No.1 Drone

@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Camera",
+        "img": "https://i.ibb.co/B67R27y/robert-shunev-m-S1nl-Ybq1k-A-unsplash.jpg",
+        "details": "20 MP Resolution 4k at 30 FPS."
+    },
+    {
+        "name": "Battery",
+        "img": "https://i.ibb.co/3YwwGy4/alexander-shatov-Cys3-W7-MXDU-unsplash.jpg",
+        "details": "Max Flight time 45 Minutes."
+    },
+    {
+        "name": "Speed",
+        "img": "https://i.ibb.co/4p0pdsz/chris-liverani-HUJDz6-CJEa-M-unsplash.jpg",
+        "details": "Max Speed 79 MPH (22mls)."
+    },
+    {
+        "name": "Control",
+        "img": "https://i.ibb.co/VSqFXmb/muhammad-toqeer-NRJ9ipvz2i-E-unsplash.jpg",
+        "details": "Maximum Range of 1.6 KM"
+    }
+]
