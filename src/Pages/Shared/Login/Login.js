@@ -3,10 +3,12 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Pap
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import useFirebase from '../../../hooks/useFirebase';
 
 const theme = createTheme();
 
 const Login = () => {
+    const { loginWithEmail } = useFirebase();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -15,11 +17,15 @@ const Login = () => {
             email: data.get('email'),
             password: data.get('password'),
         }
+        const { email, password } = user;
+        loginWithEmail(email, password);
         console.log(user);
     };
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
+            <Grid container component="main"
+            // sx={{ height: '100vh' }}
+            >
                 <CssBaseline />
                 <Grid
                     item

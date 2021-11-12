@@ -14,7 +14,7 @@ const Products = () => {
     return (
         <Box sx={{ mx: 7 }} style={{ marginTop: '-100px' }}>
             <Typography variant="h3">
-                Our Products
+                Our Top Products
             </Typography>
             <Grid container
                 spacing={{ xs: 2, md: 3 }}

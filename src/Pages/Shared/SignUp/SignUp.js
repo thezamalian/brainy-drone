@@ -3,12 +3,14 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Gri
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import useFirebase from '../../../hooks/useFirebase';
 
 
 
 const theme = createTheme();
 
 const SignUp = () => {
+    const { signUpWithEmail } = useFirebase();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -18,7 +20,8 @@ const SignUp = () => {
             email: data.get('email'),
             password: data.get('password'),
         }
-        console.log(newUser);
+        const { name, email, password } = newUser;
+        signUpWithEmail(name, email, password);
     };
 
     return (

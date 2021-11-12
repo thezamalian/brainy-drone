@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const styles = {
-    minHeight: '250px',
+    minHeight: '280px',
     width: "80%",
     background: "yellow",
     ":hover": {
@@ -19,7 +19,8 @@ const SingleFeature = ({ feature }) => {
     return (
         <Grid item xs={12} sm={6} md={3}>
             <Box style={styles} sx={{ py: 2, borderRadius: '20px' }}>
-                <Avatar alt="Remy Sharp" src={img} sx={{ mx: 'auto', width: '150px', height: '150px' }} />
+                <Avatar alt="Remy Sharp" src={img} sx={{ mx: 'auto', mb: 2, width: '150px', height: '150px' }} />
+
                 <Typography variant="h5">
                     {name}
                 </Typography>

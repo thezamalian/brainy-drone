@@ -14,7 +14,7 @@ const ExploreAll = () => {
     return (
         <Box sx={{ mx: 7, mt: 5 }}>
             <Typography variant="h3">
-                Our Products
+                All of Our Products
             </Typography>
             <Grid container
                 spacing={{ xs: 2, md: 3 }}
