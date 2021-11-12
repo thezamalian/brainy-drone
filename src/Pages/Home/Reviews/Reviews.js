@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Grid, Typography, Box } from '@mui/material';
+import SingleReview from '../SingleReview/SingleReview';
 
 const Reviews = () => {
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch('/reviews.json')
+            .then(res => res.json())
+            .then(data => {
+                setReviews(data);
+            })
+    }, [])
     return (
-        <div style={{ height: '200px', border: '2px solid red', marginTop: '10px' }}>
-            <h2>This is Reviews</h2>
-        </div>
+
+        <Box sx={{ mx: 7, my: 3 }} >
+            <Typography variant="h4">
+                WORDS FROM OUR CLIENT
+            </Typography>
+            <Grid container
+                spacing={{ xs: 2, md: 3 }}
+                columns={{ xs: 12, sm: 12, md: 12 }}
+            >
+
+                {
+                    reviews.map(review => <SingleReview
+                        key={reviews.indexOf(review)}
+                        review={review}
+                    />)
+                }
+            </Grid>
+        </Box>
+
     );
 };
 

@@ -36,7 +36,7 @@ function App() {
 						<SignUp />
 					</Route>
 
-					<Route path="/products">
+					<Route exact path="/products">
 						<ExploreAll />
 					</Route>
 					<Route path="/products/:id">

@@ -1,0 +1,44 @@
+[
+    {
+        "name": "David Johnson",
+        "role": "Military Expert",
+        "rating": 5,
+        "img": "https://i.ibb.co/YXNVZ4g/joseph-gonzalez-i-Fg-Rcq-Hznqg-unsplash.jpg",
+        "comment": "I had a great experience with Brainy Drones. The feeling was awesome and I definitely liked that you have a very modern style of drone design. Most importantly, those drones are strong enough to survive any atmosphere."
+    },
+    {
+        "name": "John Smith",
+        "role": "Senior Physicist",
+        "rating": 4,
+        "img": "https://i.ibb.co/mbtGFVN/ben-parker-Oh-KEl-Ok-Q3-RE-unsplash.jpg",
+        "comment": "I had a great experience with Brainy Drones. The feeling was awesome and I definitely liked that you have a very modern style of drone design. Most importantly, those drones are strong enough to survive any atmosphere."
+    },
+    {
+        "name": "Joe Garden",
+        "role": "Video Recorder",
+        "rating": 5,
+        "img": "https://i.ibb.co/hCXgByg/julian-wan-WNo-Ln-Jo7t-S8-unsplash.jpg",
+        "comment": "I had a great experience with Brainy Drones. The feeling was awesome and I definitely liked that you have a very modern style of drone design. Most importantly, those drones are strong enough to survive any atmosphere."
+    },
+    {
+        "name": "Ben Franklin",
+        "role": "Product Designer",
+        "rating": 4,
+        "img": "https://i.ibb.co/ChgNpC7/linkedin-sales-solutions-p-At-A8xe-i-VM-unsplash.jpg",
+        "comment": "I had a great experience with Brainy Drones. The feeling was awesome and I definitely liked that you have a very modern style of drone design. Most importantly, those drones are strong enough to survive any atmosphere."
+    },
+    {
+        "name": "John Snow",
+        "role": "Delivery Manager",
+        "rating": 5,
+        "img": "https://i.ibb.co/y51L6ZW/jurica-koletic-7-YVZYZe-ITc8-unsplash.jpg",
+        "comment": "I had a great experience with Brainy Drones. The feeling was awesome and I definitely liked that you have a very modern style of drone design. Most importantly, those drones are strong enough to survive any atmosphere."
+    },
+    {
+        "name": "Mathew Max",
+        "role": "Content Manager",
+        "rating": 5,
+        "img": "https://i.ibb.co/xspDxXb/alex-suprun-ZHv-M3-XIOHo-E-unsplash.jpg",
+        "comment": "I had a great experience with Brainy Drones. The feeling was awesome and I definitely liked that you have a very modern style of drone design. Most importantly, those drones are strong enough to survive any atmosphere."
+    }
+]

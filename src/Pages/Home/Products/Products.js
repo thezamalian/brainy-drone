@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Grid, Typography, Box } from '@mui/material';
+import SingleProduct from '../../Shared/SingleProduct/SingleProduct';
 
 const Products = () => {
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        fetch('/products.json')
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data.slice(0, 6));
+            })
+    }, []);
     return (
-        <div style={{ height: '200px', border: '2px solid red', marginTop: '10px' }}>
-            <h2>This is Products</h2>
-        </div>
+        <Box sx={{ mx: 7 }} style={{ marginTop: '-100px' }}>
+            <Typography variant="h3">
+                Our Products
+            </Typography>
+            <Grid container
+                spacing={{ xs: 2, md: 3 }}
+                columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+
+                {
+                    products.map(pd => <SingleProduct
+                        key={products.indexOf(pd)}
+                        product={pd}
+                    />)
+                }
+            </Grid>
+        </Box>
     );
 };
 
