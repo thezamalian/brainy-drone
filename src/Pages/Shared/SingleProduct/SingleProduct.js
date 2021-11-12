@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Button, CardActionArea, CardActions, Card, CardContent, CardMedia, Typography, } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({ id, product }) => {
     const { name, price, img, details } = product;
     return (
         <Grid item xs={2} sm={4} md={4}
@@ -36,7 +36,7 @@ const SingleProduct = ({ product }) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Link to={`/products/${name}`} style={{ width: '100%' }}>
+                    <Link to={`/purchase/${id}`} style={{ width: '100%' }}>
                         <Button variant="contained" sx={{ width: '100%' }} color="primary">
                             Buy Now
                         </Button>

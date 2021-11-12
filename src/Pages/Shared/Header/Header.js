@@ -74,7 +74,7 @@ const Header = () => {
                             </Box>
                             :
                             <span >
-                                <Link to="/login"> <Button variant="contained" color="secondary" sx={{ mx: 1 }}>Login</Button> </Link>
+                                <Link to="/login"> <Button variant="contained" color="secondary" sx={{ mx: 1, textDecoration: 'none' }}>Login</Button> </Link>
                                 <Link to="/signup"> <Button variant="contained" color="warning">Sign Up</Button> </Link>
                             </span>
                         }

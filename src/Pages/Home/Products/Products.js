@@ -24,6 +24,7 @@ const Products = () => {
                 {
                     products.map(pd => <SingleProduct
                         key={products.indexOf(pd)}
+                        id={products.indexOf(pd)}
                         product={pd}
                     />)
                 }

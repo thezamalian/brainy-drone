@@ -10,6 +10,7 @@ import Footer from './Pages/Shared/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
 import Login from './Pages/Shared/Login/Login';
 import NotFound from './Pages/Shared/NotFound/NotFound';
+import PrivateRoute from './Pages/Shared/PrivateRoute/PrivateRoute';
 import Purchase from './Pages/Shared/Purchase/Purchase';
 import SignUp from './Pages/Shared/SignUp/SignUp';
 import AddReview from './Pages/User/AddReview/AddReview';
@@ -46,32 +47,32 @@ function App() {
 					<Route exact path="/products">
 						<ExploreAll />
 					</Route>
-					<Route path="/products/:id">
+					<PrivateRoute path="/purchase/:id">
 						<Purchase />
-					</Route>
+					</PrivateRoute>
 
-					<Route path="/myOrders">
+					<PrivateRoute path="/myOrders">
 						<MyOrders />
-					</Route>
-					<Route path="/payment">
+					</PrivateRoute>
+					<PrivateRoute path="/payment">
 						<Pay />
-					</Route>
-					<Route path="/addReview">
+					</PrivateRoute>
+					<PrivateRoute path="/addReview">
 						<AddReview />
-					</Route>
+					</PrivateRoute>
 
-					<Route path="/manageAllOrders">
+					<PrivateRoute path="/manageAllOrders">
 						<ManageAllOrders />
-					</Route>
-					<Route path="/addProduct">
+					</PrivateRoute>
+					<PrivateRoute path="/addProduct">
 						<AddProduct />
-					</Route>
-					<Route path="/manageProducts">
+					</PrivateRoute>
+					<PrivateRoute path="/manageProducts">
 						<ManageProducts />
-					</Route>
-					<Route path="/makeAdmin">
+					</PrivateRoute>
+					<PrivateRoute path="/makeAdmin">
 						<MakeAdmin />
-					</Route>
+					</PrivateRoute>
 
 					<Route path="*">
 						<NotFound />

@@ -8,17 +8,24 @@ import {
     signOut
 } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useLocation, useHistory } from 'react-router-dom';
 
 initializeAuth();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     const auth = getAuth();
 
+
+    const location = useLocation();
+    const history = useHistory();
+    const redirect_uri = location.state?.from || '/';
+
     useEffect(() => {
-        onAuthStateChanged(auth, user => {
+        const unsubscribed = onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
                 console.log(user);
@@ -27,8 +34,9 @@ const useFirebase = () => {
                 setUser({});
                 // console.log(error);
             }
+            setIsLoading(false);
         })
-        // return subscribed();
+        return () => unsubscribed;
     }, [auth])
 
     const signUpWithEmail = (name, email, password) => {
@@ -57,12 +65,17 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 setUser(userCredential.user);
-                console.log(user);
+                // console.log(user);
+            })
+            .then(result => {
+                history.push(redirect_uri)
+                // console.log(user);
             })
             .catch(foundError => {
                 setError(foundError.message);
-                console.log(error);
+                // console.log(error);
             })
+
     }
 
     const handleLogOut = () => {
@@ -70,16 +83,18 @@ const useFirebase = () => {
             .then(() => {
                 setUser({})
             })
-            .catch(foundError => {
-                setError(foundError.message);
-                console.log(error);
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
     return {
         user,
+        setUser,
+        setError,
         error,
         auth,
+        isLoading,
         signUpWithEmail,
         loginWithEmail,
         handleLogOut
