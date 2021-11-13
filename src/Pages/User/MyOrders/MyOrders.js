@@ -9,7 +9,7 @@ const MyOrders = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        const uri = `http://localhost:5000/my-orders/${user.email}`;
+        const uri = `https://serene-wildwood-59933.herokuapp.com/my-orders/${user.email}`;
         fetch(uri)
             .then(res => res.json())
             .then(data => {
@@ -19,16 +19,17 @@ const MyOrders = () => {
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you Sure?');
+        const remaining = orders.filter(order => order._id !== id);
+        setOrders(remaining);
         if (proceed) {
-            const uri = `http://localhost:5000/orders/${id}`;
+            const uri = `https://serene-wildwood-59933.herokuapp.com/orders/${id}`;
             fetch(uri, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount) {
-                        const remaining = orders.filter(order => order._id !== id);
-                        setOrders(remaining);
+                        alert('This order has been deleted successfully.')
                     }
                 })
         }

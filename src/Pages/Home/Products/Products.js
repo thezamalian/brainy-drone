@@ -5,7 +5,7 @@ import SingleProduct from '../../Shared/SingleProduct/SingleProduct';
 const Products = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        const uri = "http://localhost:5000/products";
+        const uri = "https://serene-wildwood-59933.herokuapp.com/products";
         fetch(uri)
             .then(res => res.json())
             .then(data => {

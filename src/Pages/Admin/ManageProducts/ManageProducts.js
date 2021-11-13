@@ -9,7 +9,7 @@ const ManageProducts = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        const uri = `http://localhost:5000/products`;
+        const uri = `https://serene-wildwood-59933.herokuapp.com/products`;
         fetch(uri)
             .then(res => res.json())
             .then(data => {
@@ -20,7 +20,7 @@ const ManageProducts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you Sure?');
         if (proceed) {
-            const uri = `http://localhost:5000/products/${id}`;
+            const uri = `https://serene-wildwood-59933.herokuapp.com/products/${id}`;
             fetch(uri, {
                 method: 'DELETE'
             })

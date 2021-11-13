@@ -20,7 +20,7 @@ const AddReview = () => {
             comment: data.get('comment'),
         }
 
-        const uri = "http://localhost:5000/reviews";
+        const uri = "https://serene-wildwood-59933.herokuapp.com/reviews";
         fetch(uri, {
             method: 'POST',
             headers: {

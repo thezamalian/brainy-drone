@@ -16,7 +16,7 @@ const Purchase = () => {
 
     const [product, setProduct] = useState([]);
     useEffect(() => {
-        const uri = `http://localhost:5000/products/${id}`;
+        const uri = `https://serene-wildwood-59933.herokuapp.com/products/${id}`;
         fetch(uri)
             .then(res => res.json())
             .then(data => {
@@ -44,7 +44,7 @@ const Purchase = () => {
         order.user = { ...user };
         console.log(order);
 
-        const uri = "http://localhost:5000/orders";
+        const uri = "https://serene-wildwood-59933.herokuapp.com/orders";
         fetch(uri, {
             method: 'POST',
             headers: {

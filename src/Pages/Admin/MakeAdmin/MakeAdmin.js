@@ -7,10 +7,10 @@ const MakeAdmin = () => {
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
         const admin = {
-            name: data.get('email')
+            email: data.get('email')
         }
 
-        const uri = "http://localhost:5000/admins";
+        const uri = "https://serene-wildwood-59933.herokuapp.com/admins";
         fetch(uri, {
             method: 'POST',
             headers: {

@@ -14,7 +14,7 @@ const AddProduct = () => {
             details: data.get('details'),
         }
 
-        const uri = "http://localhost:5000/products";
+        const uri = "https://serene-wildwood-59933.herokuapp.com/products";
         fetch(uri, {
             method: 'POST',
             headers: {

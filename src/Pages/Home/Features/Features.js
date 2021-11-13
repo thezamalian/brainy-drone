@@ -6,7 +6,7 @@ const Features = () => {
     const [features, setFeatures] = useState([]);
 
     useEffect(() => {
-        const uri = "http://localhost:5000/features";
+        const uri = "https://serene-wildwood-59933.herokuapp.com/features";
         fetch(uri)
             .then(res => res.json())
             .then(data => {

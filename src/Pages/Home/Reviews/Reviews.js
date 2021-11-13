@@ -5,7 +5,7 @@ import SingleReview from '../SingleReview/SingleReview';
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        const uri = "http://localhost:5000/reviews";
+        const uri = "https://serene-wildwood-59933.herokuapp.com/reviews";
         fetch(uri)
             .then(res => res.json())
             .then(data => {
