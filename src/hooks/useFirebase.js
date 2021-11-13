@@ -8,7 +8,6 @@ import {
     signOut
 } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { useLocation, useHistory } from 'react-router-dom';
 
 initializeAuth();
 
@@ -19,23 +18,19 @@ const useFirebase = () => {
 
     const auth = getAuth();
 
-
-    const location = useLocation();
-    const history = useHistory();
-    const redirect_uri = location.state?.from || '/';
-
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
-                console.log(user);
+                setError("");
             }
             else {
                 setUser({});
-                // console.log(error);
+                setError("");
             }
             setIsLoading(false);
         })
+        setError("")
         return () => unsubscribed;
     }, [auth])
 
@@ -43,37 +38,32 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 console.log(userCredential.user);
-                updateProfile(auth.currentUser, {
-                    displayName: name
-                }).then(() => {
-                    console.log(auth.currentUser);
-                    // setUser(auth.currentUser)
-                }).catch(foundError => {
-                    setError(foundError.message);
-                    console.log(error);
-                })
-
-                // user.displayName = name;
-                // console.log(name, user);
+                updateProfile(auth.currentUser, { displayName: name })
+                    .then(() => {
+                        console.log(auth.currentUser);
+                        setError("");
+                    })
+                    .catch(foundError => {
+                        setError(foundError.message);
+                    })
             })
             .catch(foundError => {
                 setError(foundError.message);
-                console.log(error);
             })
     }
-    const loginWithEmail = (email, password) => {
+    const loginWithEmail = (email, password, location, history) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 setUser(userCredential.user);
-                // console.log(user);
+                setError("");
+                const redirect_uri = location.state?.from || '/';
+                history.replace(redirect_uri)
             })
-            .then(result => {
-                history.push(redirect_uri)
-                // console.log(user);
-            })
+            // .then(result => {
+
+            // })
             .catch(foundError => {
                 setError(foundError.message);
-                // console.log(error);
             })
 
     }

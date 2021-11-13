@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppBar, Box, Toolbar, Typography, Button, Avatar, Grid, Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, IconButton } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -32,6 +32,15 @@ const Header = () => {
 
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        if (user.email === "admin@admin.com") {
+            setIsAdmin(true);
+        }
+        else {
+            setIsAdmin(false);
+        }
+    }, [user.email])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -67,7 +76,9 @@ const Header = () => {
                                     edge="end"
                                     sx={{ mr: 2, display: 'inline', ...(open && { display: 'none' }) }}
                                 >
-                                    {user.email && <Button variant="inherit" > Dashboard </Button>}
+                                    {user.email && <Button
+                                        variant="inherit" sx={{ pb: 2 }} style={{ paddingRight: "5px" }}
+                                    > Dashboard </Button>}
                                     <MenuIcon />
 
                                 </IconButton>
@@ -121,6 +132,10 @@ const Header = () => {
                                             <ListItemText primary="Make Admin" />
                                         </ListItem>
                                     </Link>
+                                    <ListItem button key="{text}" color="error" onClick={handleLogOut} >
+                                        <ListItemIcon> <RateReviewIcon /> </ListItemIcon>
+                                        <ListItemText primary="Sign Out" />
+                                    </ListItem>
                                 </List>
                                 :
                                 <List >
@@ -142,6 +157,11 @@ const Header = () => {
                                             <ListItemText primary="Add Review" />
                                         </ListItem>
                                     </Link>
+                                    <ListItem button key="{text}" color="error" onClick={handleLogOut} >
+                                        <ListItemIcon> <RateReviewIcon /> </ListItemIcon>
+                                        <ListItemText primary="Sign Out" />
+                                    </ListItem>
+                                    {/* <Button variant="contained" color="error" onClick={handleLogOut} > Sign Out </Button> */}
                                 </List>
                             }
 

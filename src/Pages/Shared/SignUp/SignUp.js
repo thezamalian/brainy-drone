@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Box, Typography, Container } from '@mui/material';
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Box, Typography, Container, Alert } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import useAuth from '../../../hooks/useAuth';
 const theme = createTheme();
 
 const SignUp = () => {
-    const { signUpWithEmail } = useAuth();
+    const { signUpWithEmail, error } = useAuth();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -42,6 +42,8 @@ const SignUp = () => {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
+                    {error && <Alert severity="error">{error}</Alert>}
+
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>

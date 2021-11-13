@@ -1,19 +1,17 @@
 import React from 'react';
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Paper, Box, Grid, Typography, } from '@mui/material';
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Paper, Box, Grid, Typography, Alert, } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const theme = createTheme();
 
 const Login = () => {
-    const { loginWithEmail } = useAuth();
+    const { loginWithEmail, error } = useAuth();
 
-    // const location = useLocation();
-    // const history = useHistory();
-    // const redirect_uri = location.state?.from || '/';
-
+    const location = useLocation();
+    const history = useHistory();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,9 +23,9 @@ const Login = () => {
         }
         const { email, password } = user;
 
-        loginWithEmail(email, password)
+        loginWithEmail(email, password, location, history)
 
-        console.log(user);
+        // console.log(user);
     };
     return (
         <ThemeProvider theme={theme}>
@@ -67,6 +65,9 @@ const Login = () => {
                         <Typography component="h1" variant="h5">
                             Login
                         </Typography>
+
+                        {error && <Alert severity="error">{error}</Alert>}
+
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"

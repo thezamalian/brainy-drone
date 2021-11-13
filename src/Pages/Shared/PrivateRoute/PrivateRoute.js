@@ -11,13 +11,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     if (isLoading) {
         return <Stack
             sx={{
-                color: 'grey.500',
-                mx: 'auto',
-                display: 'flex',
-                justifyContent: 'center',
-                height: '200px',
-                mt: 7,
-
+                color: 'grey.500', mx: 'auto', display: 'flex', justifyContent: 'center', height: '200px', mt: 7,
             }}
             size={80}
             thickness={14}

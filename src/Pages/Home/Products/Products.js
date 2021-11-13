@@ -11,9 +11,10 @@ const Products = () => {
                 setProducts(data.slice(0, 6));
             })
     }, []);
+
     return (
         <Box sx={{ mx: 7 }} style={{ marginTop: '-100px' }}>
-            <Typography variant="h3">
+            <Typography variant="h3" sx={{ my: 2 }}>
                 Our Top Products
             </Typography>
             <Grid container
