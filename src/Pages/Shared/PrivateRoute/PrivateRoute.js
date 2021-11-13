@@ -2,10 +2,10 @@ import React from 'react';
 import { Redirect, Route } from 'react-router';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
 
 const PrivateRoute = ({ children, ...rest }) => {
-    const { user, isLoading } = useFirebase();
+    const { user, isLoading } = useAuth();
     // console.log(user.email);
 
     if (isLoading) {

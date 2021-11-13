@@ -1,5 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import AddProduct from './Pages/Admin/AddProduct/AddProduct';
 import MakeAdmin from './Pages/Admin/MakeAdmin/MakeAdmin';
 import ManageAllOrders from './Pages/Admin/ManageAllOrders/ManageAllOrders';
@@ -28,58 +29,60 @@ import Pay from './Pages/User/Pay/Pay';
 function App() {
 	return (
 		<div className="App">
-			<BrowserRouter>
-				<Header />
-				<Switch>
-					<Route exact path="/">
-						<Home />
-					</Route>
-					<Route path="/home">
-						<Home />
-					</Route>
-					<Route path="/login">
-						<Login />
-					</Route>
-					<Route path="/signup">
-						<SignUp />
-					</Route>
+			<AuthProvider>
+				<BrowserRouter>
+					<Header />
+					<Switch>
+						<Route exact path="/">
+							<Home />
+						</Route>
+						<Route path="/home">
+							<Home />
+						</Route>
+						<Route path="/login">
+							<Login />
+						</Route>
+						<Route path="/signup">
+							<SignUp />
+						</Route>
 
-					<Route exact path="/products">
-						<ExploreAll />
-					</Route>
-					<PrivateRoute path="/purchase/:id">
-						<Purchase />
-					</PrivateRoute>
+						<Route exact path="/products">
+							<ExploreAll />
+						</Route>
+						<PrivateRoute path="/purchase/:id">
+							<Purchase />
+						</PrivateRoute>
 
-					<PrivateRoute path="/myOrders">
-						<MyOrders />
-					</PrivateRoute>
-					<PrivateRoute path="/payment">
-						<Pay />
-					</PrivateRoute>
-					<PrivateRoute path="/addReview">
-						<AddReview />
-					</PrivateRoute>
+						<PrivateRoute path="/myOrders">
+							<MyOrders />
+						</PrivateRoute>
+						<PrivateRoute path="/payment">
+							<Pay />
+						</PrivateRoute>
+						<PrivateRoute path="/addReview">
+							<AddReview />
+						</PrivateRoute>
 
-					<PrivateRoute path="/manageAllOrders">
-						<ManageAllOrders />
-					</PrivateRoute>
-					<PrivateRoute path="/addProduct">
-						<AddProduct />
-					</PrivateRoute>
-					<PrivateRoute path="/manageProducts">
-						<ManageProducts />
-					</PrivateRoute>
-					<PrivateRoute path="/makeAdmin">
-						<MakeAdmin />
-					</PrivateRoute>
+						<PrivateRoute path="/manageAllOrders">
+							<ManageAllOrders />
+						</PrivateRoute>
+						<PrivateRoute path="/addProduct">
+							<AddProduct />
+						</PrivateRoute>
+						<PrivateRoute path="/manageProducts">
+							<ManageProducts />
+						</PrivateRoute>
+						<PrivateRoute path="/makeAdmin">
+							<MakeAdmin />
+						</PrivateRoute>
 
-					<Route path="*">
-						<NotFound />
-					</Route>
-				</Switch>
-				<Footer />
-			</BrowserRouter>
+						<Route path="*">
+							<NotFound />
+						</Route>
+					</Switch>
+					<Footer />
+				</BrowserRouter>
+			</AuthProvider>
 		</div>
 	);
 }

@@ -3,12 +3,12 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Pap
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
 
 const theme = createTheme();
 
 const Login = () => {
-    const { loginWithEmail } = useFirebase();
+    const { loginWithEmail } = useAuth();
 
     // const location = useLocation();
     // const history = useHistory();

@@ -13,7 +13,7 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 import { styled, useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
 
 const drawerWidth = 240;
 
@@ -27,7 +27,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Header = () => {
-    const { user, handleLogOut } = useFirebase();
+    const { user, handleLogOut } = useAuth();
     const [isAdmin, setIsAdmin] = useState(false);
 
     const theme = useTheme();
