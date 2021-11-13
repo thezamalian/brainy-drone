@@ -5,14 +5,15 @@ import SingleProduct from '../Shared/SingleProduct/SingleProduct';
 const ExploreAll = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('/products.json')
+        const uri = "http://localhost:5000/products";
+        fetch(uri)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
             })
     }, []);
     return (
-        <Box sx={{ mx: 7, mt: 5 }}>
+        <Box sx={{ mx: 7, mt: 5, minHeight: 500 }}>
             <Typography variant="h3">
                 All of Our Products
             </Typography>

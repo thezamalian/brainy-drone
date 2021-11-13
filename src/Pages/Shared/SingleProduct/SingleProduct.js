@@ -3,7 +3,9 @@ import { Grid, Button, CardActionArea, CardActions, Card, CardContent, CardMedia
 import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ id, product }) => {
-    const { name, price, img, details } = product;
+    const { _id, name, price, img, details } = product;
+    // console.log(product);
+
     return (
         <Grid item xs={2} sm={4} md={4}
         //  key={index}
@@ -36,7 +38,7 @@ const SingleProduct = ({ id, product }) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Link to={`/purchase/${id}`} style={{ width: '100%' }}>
+                    <Link to={`/purchase/${_id}`} style={{ width: '100%' }}>
                         <Button variant="contained" sx={{ width: '100%' }} color="primary">
                             Buy Now
                         </Button>

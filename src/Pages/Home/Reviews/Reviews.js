@@ -5,7 +5,8 @@ import SingleReview from '../SingleReview/SingleReview';
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('/reviews.json')
+        const uri = "http://localhost:5000/reviews";
+        fetch(uri)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);

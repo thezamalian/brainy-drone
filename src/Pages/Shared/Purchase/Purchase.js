@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, CssBaseline, TextField, Paper, Box, Grid, Typography, Stack, } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Avatar, Button, CssBaseline, TextField, Paper, Box, Grid, Typography, } from '@mui/material';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import useAuth from '../../../hooks/useAuth';
+import { useParams } from 'react-router';
 
 const theme = createTheme();
 
 const Purchase = () => {
+    const { id } = useParams();
+    // console.log(id);
     const { user } = useAuth();
     const { displayName, email } = user;
 
-    const [products, setProducts] = useState([]);
+    const [product, setProduct] = useState([]);
     useEffect(() => {
-        fetch('/products.json')
+        const uri = `http://localhost:5000/products/${id}`;
+        fetch(uri)
             .then(res => res.json())
             .then(data => {
-                setProducts(data.slice(0, 6));
+                setProduct(data);
+                console.log(product);
             })
     }, []);
 
@@ -34,7 +38,26 @@ const Purchase = () => {
         // const { email, password } = user;
 
         // loginWithEmail(email, password)
-        console.log(user);
+        // console.log(user);
+        const order = { ...product };
+        order.isPending = true;
+        order.user = { ...user };
+        console.log(order);
+
+        const uri = "http://localhost:5000/orders";
+        fetch(uri, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.insertedId) {
+                    alert("This Product is Booked Successfully.");
+                }
+            })
     };
     return (
         <ThemeProvider theme={theme}>
@@ -49,7 +72,7 @@ const Purchase = () => {
                     md={7}
                     sx={{
                         color: 'white',
-                        backgroundImage: `url(${products[0]?.img})`,
+                        backgroundImage: `url(${product.img})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -58,9 +81,9 @@ const Purchase = () => {
                     }}
                 >
                     <Box style={{ marginTop: '70vh' }}>
-                        <Typography variant="h3">{products[0]?.name}</Typography>
-                        <Typography variant="h5">Price: {products[0]?.price}</Typography>
-                        <Typography variant="h6" color="text.secondary" >{products[0]?.details}</Typography>
+                        <Typography variant="h3">{product.name}</Typography>
+                        <Typography variant="h5">Price: {product.price}</Typography>
+                        <Typography variant="h6" color="text.secondary" >{product.details}</Typography>
                     </Box>
                 </Grid>
 

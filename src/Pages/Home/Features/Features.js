@@ -6,7 +6,8 @@ const Features = () => {
     const [features, setFeatures] = useState([]);
 
     useEffect(() => {
-        fetch('/features.json')
+        const uri = "http://localhost:5000/features";
+        fetch(uri)
             .then(res => res.json())
             .then(data => {
                 setFeatures(data);

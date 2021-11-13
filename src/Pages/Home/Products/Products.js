@@ -5,7 +5,8 @@ import SingleProduct from '../../Shared/SingleProduct/SingleProduct';
 const Products = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('/products.json')
+        const uri = "http://localhost:5000/products";
+        fetch(uri)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.slice(0, 6));
