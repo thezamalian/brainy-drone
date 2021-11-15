@@ -10,6 +10,8 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 
 import { styled, useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
@@ -34,12 +36,20 @@ const Header = () => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        if (user.email === "admin@admin.com") {
-            setIsAdmin(true);
-        }
-        else {
-            setIsAdmin(false);
-        }
+        const uri = `https://serene-wildwood-59933.herokuapp.com/admins`;
+        fetch(uri)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(admin => {
+                    if (user.email === admin.email) {
+                        setIsAdmin(true);
+                    }
+                }
+                )
+
+            })
+
     }, [user.email])
 
     const handleDrawerOpen = () => {
@@ -68,7 +78,7 @@ const Header = () => {
                         {user.email ?
                             <Box sx={{ display: 'inline' }}>
                                 <Typography sx={{ display: 'inline' }}> {user.displayName} </Typography>
-                                <Button variant="contained" color="error" onClick={handleLogOut} > Sign Out </Button>
+                                <Button variant="contained" color="error" onClick={handleLogOut} > Sign Out <LogoutIcon /> </Button>
                                 <IconButton
                                     color="inherit"
                                     aria-label="open drawer"
@@ -85,7 +95,7 @@ const Header = () => {
                             </Box>
                             :
                             <span >
-                                <Link to="/login"> <Button variant="contained" color="secondary" sx={{ mx: 1, textDecoration: 'none' }}>Login</Button> </Link>
+                                <Link to="/login"> <Button variant="contained" color="secondary" sx={{ mx: 1, textDecoration: 'none' }}>Login <LoginIcon /> </Button> </Link>
                                 <Link to="/signup"> <Button variant="contained" color="warning">Sign Up</Button> </Link>
                             </span>
                         }
@@ -133,7 +143,7 @@ const Header = () => {
                                         </ListItem>
                                     </Link>
                                     <ListItem button key="{text}" color="error" onClick={handleLogOut} >
-                                        <ListItemIcon> <RateReviewIcon /> </ListItemIcon>
+                                        <ListItemIcon> <LogoutIcon /> </ListItemIcon>
                                         <ListItemText primary="Sign Out" />
                                     </ListItem>
                                 </List>
@@ -158,7 +168,7 @@ const Header = () => {
                                         </ListItem>
                                     </Link>
                                     <ListItem button key="{text}" color="error" onClick={handleLogOut} >
-                                        <ListItemIcon> <RateReviewIcon /> </ListItemIcon>
+                                        <ListItemIcon> <LogoutIcon /> </ListItemIcon>
                                         <ListItemText primary="Sign Out" />
                                     </ListItem>
                                     {/* <Button variant="contained" color="error" onClick={handleLogOut} > Sign Out </Button> */}

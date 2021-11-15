@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
+import useFirebase from './hooks/useFirebase';
 import AddProduct from './Pages/Admin/AddProduct/AddProduct';
 import MakeAdmin from './Pages/Admin/MakeAdmin/MakeAdmin';
 import ManageAllOrders from './Pages/Admin/ManageAllOrders/ManageAllOrders';
@@ -27,54 +29,51 @@ import Pay from './Pages/User/Pay/Pay';
 */
 
 function App() {
+	const { user } = useFirebase();
+	const [isAdmin, setIsAdmin] = useState(false);
+
+	useEffect(() => {
+		const uri = `https://serene-wildwood-59933.herokuapp.com/admins`;
+		fetch(uri)
+			.then(res => res.json())
+			.then(data => {
+				console.log(data);
+				data.forEach(admin => {
+					if (user.email === admin.email) {
+						setIsAdmin(true);
+					}
+				}
+				)
+
+			})
+
+	}, [user.email])
 	return (
 		<div className="App">
 			<AuthProvider>
 				<BrowserRouter>
 					<Header />
 					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route path="/home">
-							<Home />
-						</Route>
-						<Route path="/login">
-							<Login />
-						</Route>
-						<Route path="/signup">
-							<SignUp />
-						</Route>
+						<Route exact path="/"> <Home /> </Route>
+						<Route path="/home"> <Home /> </Route>
 
-						<Route exact path="/products">
-							<ExploreAll />
-						</Route>
+						<Route path="/login"> <Login /> </Route>
+						<Route path="/signup"> <SignUp /> </Route>
+
+						<Route exact path="/products"> <ExploreAll /> </Route>
 						<PrivateRoute path="/purchase/:id">
 							<Purchase />
 						</PrivateRoute>
 
-						<PrivateRoute path="/myOrders">
-							<MyOrders />
-						</PrivateRoute>
-						<PrivateRoute path="/payment">
-							<Pay />
-						</PrivateRoute>
-						<PrivateRoute path="/addReview">
-							<AddReview />
-						</PrivateRoute>
+						{!isAdmin && <PrivateRoute path="/myOrders"> <MyOrders /> </PrivateRoute>}
+						{!isAdmin && <PrivateRoute path="/payment"> <Pay /></PrivateRoute>}
+						{!isAdmin && <PrivateRoute path="/addReview"> <AddReview /></PrivateRoute>}
 
-						<PrivateRoute path="/manageAllOrders">
-							<ManageAllOrders />
-						</PrivateRoute>
-						<PrivateRoute path="/addProduct">
-							<AddProduct />
-						</PrivateRoute>
-						<PrivateRoute path="/manageProducts">
-							<ManageProducts />
-						</PrivateRoute>
-						<PrivateRoute path="/makeAdmin">
-							<MakeAdmin />
-						</PrivateRoute>
+
+						{isAdmin && <PrivateRoute path="/manageAllOrders"> <ManageAllOrders /></PrivateRoute>}
+						{isAdmin && <PrivateRoute path="/addProduct"> <AddProduct /></PrivateRoute>}
+						{isAdmin && <PrivateRoute path="/manageProducts"> <ManageProducts /></PrivateRoute>}
+						{isAdmin && <PrivateRoute path="/makeAdmin"> <MakeAdmin /></PrivateRoute>}
 
 						<Route path="*">
 							<NotFound />

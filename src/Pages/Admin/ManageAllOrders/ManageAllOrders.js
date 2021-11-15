@@ -20,8 +20,10 @@ const ManageAllOrders = () => {
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you Sure?');
+
         const remaining = orders.filter(order => order._id !== id);
         setOrders(remaining);
+
         if (proceed) {
             const uri = `https://serene-wildwood-59933.herokuapp.com/orders/${id}`;
             fetch(uri, {
@@ -87,9 +89,8 @@ const ManageAllOrders = () => {
                                             setOrders(updatedOrders);
                                             handleUpdate(order._id, order);
                                         }}
-                                    // variant="contained"
-                                    // className='ms-2 btn btn-success'
                                     >
+
                                         <CheckIcon />
                                     </Button> </div>
                                     : <p>Shipped </p>
@@ -98,7 +99,7 @@ const ManageAllOrders = () => {
                             <div className='w-25'>
                                 <Button
                                     // variant="contained" 
-                                    onClick={() => handleDelete(order._id)}
+                                    onClick={() => handleDelete(order?._id)}
                                 // className='btn btn-danger '
                                 >
                                     <DeleteIcon />
